@@ -1,0 +1,24 @@
+{
+  "name": "antbridge",
+  "version": "1.0.0",
+  "description": "AlipayJSBridge of promise",
+  "main": "dist/index",
+  "scripts": {
+    "build": "webpack",
+    "push": "npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NotLaugthingMe/antBridge.git"
+  },
+  "keywords": [
+    "ali",
+    "promise"
+  ],
+  "author": "notlaughtingme",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NotLaugthingMe/antBridge/issues"
+  },
+  "homepage": "https://github.com/NotLaugthingMe/antBridge#readme"
+}
