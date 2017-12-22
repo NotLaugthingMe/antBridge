@@ -311,4 +311,6 @@ class Ali extends Core{
   }
 }
 
+export default new Ali();
+
 
