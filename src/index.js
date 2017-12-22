@@ -242,35 +242,6 @@ class Ali extends Core{
       Head.appendChild(M);
     }
   }
-  getSingleContact(fn){
-    this.call('contact', result=>{
-      let temp= {
-        phoneNumber: result.mobile,
-        name: result.name
-      };
-      switch (result.error) {
-        case 10:
-          temp.errorMessage = "没有权限";
-          break;
-    
-        case 11:
-          temp.errorMessage = "用户取消操作";
-          break;
-        default:
-          temp.errorMessage =  result.errorMessage;
-      }
-      fn && fn(temp);
-    })
-  }
-  chooseContact(opt, fn) {
-    opt = extend({}, {
-      type: 'multi',
-      multiMax: 50,
-    }, opt);
-    this.call('chooseContact', opt ,result=>{
-    
-    })
-  }
   getNetworkType(opt, fn){
     if(fn === undefined && isFn(opt)) {
       fn = opt;
@@ -289,6 +260,54 @@ class Ali extends Core{
       timer && clearTimeout(timer);
       fn && fn(result);
     })
+  }
+  tradePay(opt, fn){
+    this.call('tradePay', opt, fn)
+  }
+  pushWindow(opt, fn){
+    if (isString(opt)) {
+      opt = {
+        url: opt + ''
+      }
+    }
+    opt = opt || {};
+    if (!opt.url) {
+      console.error('pushWindow: url is required');
+      return false;
+    }
+    this.call('pushWindow', opt, fn)
+  }
+  popWindow(opt, fn){
+    this.call('popWindow', opt, fn)
+  }
+  popTo(opt, fn){
+    if (isNumber(opt)) {
+      opt = {
+        step: opt
+      };
+    } else if (isString(opt)) {
+      opt = {
+        urlPattern: opt
+      };
+    }
+    opt.step !== undefined && (opt.index = opt.step);
+    Ali.call("popTo", opt, fn);
+  }
+  openInBrowser(opt, fn) {
+    if (isString(opt)) {
+      opt = {
+        url: opt + ''
+      }
+    }
+    opt = opt || {};
+    if (!opt.url) {
+      console.error('openInBrowser: url is required');
+      return false;
+    }
+    this.call('openInBrowser', opt, fn)
+  }
+  exitApp(){
+    this.call('exitApp')
   }
 }
 
