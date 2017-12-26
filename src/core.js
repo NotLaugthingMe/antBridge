@@ -15,6 +15,10 @@ export default class Core{
     }
   }
   call(...arg){
+    if(!this.isAliPay) {
+      alert('Run antBridge.js in AlipayClient please!');
+      return false;
+    }
     const args = Array.prototype.slice.call(arg);
     const name = args[0];
     let opt = args[1];
